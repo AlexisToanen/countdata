@@ -19,32 +19,16 @@ class PeopleRepository extends ServiceEntityRepository
         parent::__construct($registry, People::class);
     }
 
-    // /**
-    //  * @return People[] Returns an array of People objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function CountData(): array
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $entityManager = $this->getEntityManager();
 
-    /*
-    public function findOneBySomeField($value): ?People
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $query = $entityManager->createQuery(
+            'SELECT COUNT(people) 
+             FROM App\Entity\People people'
+        );
+
+        // returns an array of Product objects
+        return $query->getResult();
     }
-    */
 }

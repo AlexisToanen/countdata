@@ -22,6 +22,7 @@ class PeopleController extends AbstractController
     {
         return $this->render('people/index.html.twig', [
             'people' => $peopleRepository->findAll(),
+            'peoplecount' => $peopleRepository->CountData()
         ]);
     }
 
